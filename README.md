@@ -2,4 +2,4 @@
 ## ESP32 controller
 -------------------------
 
-Led indicator PROGRAM
+Temperature indicator PROGRAM
