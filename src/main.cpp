@@ -35,6 +35,7 @@ void loop() {
   drawMatrix();
 }
 
+// Draw Pixel by X Y
 void drawPixelXY(uint8_t x, uint8_t y) {
   if (x > 7 || y > 7) {
     return;
