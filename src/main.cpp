@@ -1,25 +1,22 @@
 #include <Arduino.h>
+#include <HardwareSerial.h>
 
-const int ledPin = 2;
+HardwareSerial MySerial(2);
+int number = 0;
 
 void setup() {
-  // put your setup code here, to run once:
-  //int result = myFunction(2, 3);
-  pinMode(ledPin, OUTPUT);
+  Serial.begin(115200);
+  MySerial.begin(9600, SERIAL_8N1, 16, 17); // RX, TX
+
+  Serial.println("ESP32-A: Ready Ok");
+  
 }
 
 void loop() {
-  // increase the LED brightness
-  for(int dutyCycle = 0; dutyCycle <= 255; dutyCycle++){   
-    // changing the LED brightness with PWM
-    analogWrite(ledPin, dutyCycle);
-    delay(200);
-  }
-
-  // decrease the LED brightness
-  for(int dutyCycle = 255; dutyCycle >= 0; dutyCycle--){
-    // changing the LED brightness with PWM
-    analogWrite(ledPin, dutyCycle);
-    delay(200);
-  }
+ 
+  String message = "Hello from ESP32 A -> " +  String(number);
+  MySerial.println(message);
+  Serial.println("Sended: " + message);
+  number++;
+  delay(2000);
 }
