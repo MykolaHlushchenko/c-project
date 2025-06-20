@@ -2,4 +2,5 @@
 ## ESP32 controller
 -------------------------
 
-Led indicator PROGRAM
+LCD Monitor and LM35
+Dispaly current temperature
