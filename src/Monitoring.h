@@ -1,8 +1,6 @@
 #ifndef MONITORING_H
 #define MONITORING_H
 
-void setupMonitoring();
-
 // Define number pin for ESP32
 #define DHT_PIN 15
 
