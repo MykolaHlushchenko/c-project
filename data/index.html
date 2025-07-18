@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RADAR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>RADAR ESP32</h1>
+  <canvas id="myCanvas" width="600" height="600"></canvas>
+  <div class="actions">
+    <label class="switch">
+      <input type="checkbox" id="motor" onchange="toggleMotor(this.checked)">
+      <span class="slider round"></span>
+    </label>
+    <button onclick="aboutProgram()">About</button>  
+  </div>  
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,25 +1,24 @@
 #include <Arduino.h>
-
-const int ledPin = 2;
+#include <Radar.h>
 
 void setup() {
-  // put your setup code here, to run once:
-  //int result = myFunction(2, 3);
-  pinMode(ledPin, OUTPUT);
+  Serial.begin(115200);
+  wifiConnection();
+  setupMotor();
+  setupServerRequest();
+  setupRadarPins();
+    
+   xTaskCreatePinnedToCore(
+    motorTask,
+    "Motor Task",
+    4096,            
+    NULL,            
+    1,               
+    NULL,            
+    0                // use core 0 for avoid problem when wifi enabled
+  );
 }
 
 void loop() {
-  // increase the LED brightness
-  for(int dutyCycle = 0; dutyCycle <= 255; dutyCycle++){   
-    // changing the LED brightness with PWM
-    analogWrite(ledPin, dutyCycle);
-    delay(200);
-  }
-
-  // decrease the LED brightness
-  for(int dutyCycle = 255; dutyCycle >= 0; dutyCycle--){
-    // changing the LED brightness with PWM
-    analogWrite(ledPin, dutyCycle);
-    delay(200);
-  }
+  // do something
 }
