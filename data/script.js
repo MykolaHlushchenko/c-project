@@ -13,7 +13,7 @@ function toggleMotor(isChecked) {
     );
 }
 
-// Draw circles with differnces radis
+// Draw circles with differnces radius
 function drawCircles(context) {
     let R = 0;
     for (let count = 0; count < 6; count++) {
@@ -24,9 +24,9 @@ function drawCircles(context) {
     }
 }
 
-// Initialize canvas
+// Initialize canvas area
 function initializeCanvas() {
-    const canvas = document.getElementById("myCanvas");
+    const canvas = document.getElementById("canvasContainer");
     const context = canvas.getContext("2d");
     context.beginPath();
     context.arc(300, 300, 300, 0, 2*Math.PI);
@@ -129,10 +129,10 @@ async function updateDistance() {
     const response = await fetch('/data');
     const data = await response.json();
 
-    let distance = data.value;
+    let distance = data.distance;
     let angle = data.angle;
     
-    const canvas = document.getElementById("myCanvas");
+    const canvas = document.getElementById("canvasContainer");
     const context = canvas.getContext("2d");
     
     context.fillStyle = "rgba(0, 0, 0, 0.05)";

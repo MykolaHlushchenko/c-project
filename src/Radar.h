@@ -11,11 +11,22 @@
 const int TRIG_PIN = 5;
 const int ECHO_PIN = 18;
 
+// Set default values for motor
 void setupMotor();
+
+// Create access point to wifi
 void wifiConnection();
+
+// Setup server request 
 void setupServerRequest();
+
+// Setup radar(HC-SR04) pins 
 void setupRadarPins();
+
+// Get distance to object in cm
 long getDistance();
+
+// Task motor
 void motorTask(void* pvParameters);
 
 #endif
