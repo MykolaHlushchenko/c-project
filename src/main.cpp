@@ -1,25 +1,62 @@
 #include <Arduino.h>
-
-const int ledPin = 2;
+#include <WiFi.h>
 
 void setup() {
-  // put your setup code here, to run once:
-  //int result = myFunction(2, 3);
-  pinMode(ledPin, OUTPUT);
+  // Setup Wifi scanner
+  Serial.begin(115200);
+
+  // Enable Wifi station mode
+  WiFi.mode(WIFI_STA);
+  WiFi.disconnect();
+  delay(100);
+
+  Serial.println("Setup mode DONE");
 }
 
 void loop() {
-  // increase the LED brightness
-  for(int dutyCycle = 0; dutyCycle <= 255; dutyCycle++){   
-    // changing the LED brightness with PWM
-    analogWrite(ledPin, dutyCycle);
-    delay(200);
-  }
+  Serial.print("\r");
+  // Search in a Loop wifi networks
 
-  // decrease the LED brightness
-  for(int dutyCycle = 255; dutyCycle >= 0; dutyCycle--){
-    // changing the LED brightness with PWM
-    analogWrite(ledPin, dutyCycle);
-    delay(200);
-  }
+   Serial.println("Scan start");
+   delay(5000);
+
+   int count = WiFi.scanNetworks();
+
+   Serial.println("Scan done");
+   if (count == 0) {
+      Serial.println("Any networks found !");
+   } else {
+      Serial.print(count);
+
+      Serial.println(" Networks found ");
+
+      for (int i = 0; i < count; ++i)
+      {
+        // Show Server Set Identifier
+        Serial.print("SSID [");
+        Serial.print(WiFi.SSID(i));
+        Serial.println("]");
+
+        // Show Received Signal Strengh Indicator
+        Serial.print("RSSI [");
+        Serial.print(WiFi.RSSI(i));
+        Serial.println("]");
+
+        // Show MAC address
+        Serial.print("BSSID [");
+        Serial.print(WiFi.BSSIDstr(i));
+        Serial.println("]");
+
+        // Show Encryption
+        Serial.print("ENCRIPTION [");
+        Serial.print(WiFi.encryptionType(i));
+        Serial.println("]");
+        Serial.println();
+        delay(10);
+      }
+    }
+
+    WiFi.scanDelete();
+    delay(5000);
+    Serial.println();
 }
